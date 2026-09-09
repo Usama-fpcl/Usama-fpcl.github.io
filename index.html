@@ -676,8 +676,8 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
 <!-- ============ TICKER ============ -->
 <div class="ticker" aria-hidden="true">
   <div class="ticker-inner">
-    <span>ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
-    <span aria-hidden="true">ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
+    <span>ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> POS <b>&#9670;</b> MRP <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
+    <span aria-hidden="true">ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> POS <b>&#9670;</b> MRP <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
   </div>
 </div>
 
@@ -755,7 +755,7 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
         <div class="card-icon">01</div>
         <h3>Custom Modules</h3>
         <p>ORM-first Python + XML modules with proper inheritance, record rules and access rights coded on every model, and no Studio shortcuts that break on the next upgrade.</p>
-        <div class="card-tags"><span class="tag">Python</span><span class="tag">XML</span><span class="tag">Odoo 13 &ndash; 19</span></div>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">XML</span><span class="tag">Sales &middot; Stock &middot; MRP &middot; POS</span></div>
       </div>
       <div class="card">
         <div class="card-icon">02</div>
@@ -796,7 +796,7 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
   <div class="wrap" data-reveal>
     <div class="sec-label">Selected work</div>
     <h2 class="sec-title">Modules that run <em>real operations.</em></h2>
-    <p class="sec-lead">A sample of delivered modules. Client data stays confidential &mdash; code walkthroughs available on request.</p>
+    <p class="sec-lead">A sample of delivered work across manufacturing, fuel distribution, retail and HR. Client data stays confidential &mdash; code walkthroughs available on request.</p>
 
     <div class="cards">
       <div class="card">
@@ -834,6 +834,24 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
         <h3>Packing lists, dispatch &amp; cross-instance sync</h3>
         <p>A custom packing-list module with its own dispatched state and auto-dispatch on delivery validation, alongside an employee-sync module that keeps a local database and an Odoo.sh instance aligned over XML-RPC.</p>
         <div class="card-tags"><span class="tag">Inventory</span><span class="tag">XML-RPC</span><span class="tag">Odoo.sh</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">G</div>
+        <h3>Petroleum agency &mdash; fuel distribution system</h3>
+        <p>End-to-end Odoo for a fuel agency: tanker decanting into tanks, product-wise stock in litres, pump and nozzle readings reconciled against sales, daily rate changes per product, credit customers with ledgers and recovery follow-up, and lubricant retail alongside fuel. Shift-close figures that tie back to physical stock instead of a separate register.</p>
+        <div class="card-tags"><span class="tag">Fuel distribution</span><span class="tag">Inventory</span><span class="tag">Receivables</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">H</div>
+        <h3>Oil mill &mdash; production &amp; yield tracking</h3>
+        <p>Manufacturing setup for an oil mill: seed purchase and quality intake, crushing and expelling as production orders with by-products, yield per batch tracked against expected recovery, and finished oil packed into multiple sizes &mdash; each SKU costed properly so margin per pack size is visible instead of estimated.</p>
+        <div class="card-tags"><span class="tag">MRP</span><span class="tag">By-products</span><span class="tag">Batch yield</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">I</div>
+        <h3>Point of Sale &mdash; retail counter operations</h3>
+        <p>POS configured and customised for counter sales: custom receipt layouts, product and category setup for fast lookup, multiple payment methods, discounts and returns, cashier sessions with open and close reconciliation, and every session posting straight into inventory and accounting &mdash; no end-of-day re-entry.</p>
+        <div class="card-tags"><span class="tag">POS</span><span class="tag">Receipts</span><span class="tag">Session close</span></div>
       </div>
     </div>
   </div>
@@ -939,6 +957,7 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
       <div class="about-copy">
         <p>I'm Osama Ali &mdash; an Odoo developer based in Islamabad, Pakistan, with <b>3+ years of professional Odoo work across versions 13 to 19</b>.</p>
         <p>Full-time, I'm the in-house Odoo developer at an <b>engineering manufacturer</b>, where I build custom modules, OWL dashboards and QWeb reports, integrate ZKTeco biometric devices with HR and cafeteria workflows, and carry custom modules across major versions. Part-time I work with an <b>ERP consultancy</b> serving clients in Pakistan and Saudi Arabia &mdash; including construction and food-manufacturing businesses.</p>
+        <p>The work spans a fair range of industries &mdash; engineering manufacturing, oil milling, fuel distribution, construction, food production and retail &mdash; which is why I start from the operation rather than the module list.</p>
         <p>My habit is to sit with the people who use the screen before writing the model: the storekeeper, the HR officer, the accountant. Then the engineering side takes over &mdash; <b>Python, PostgreSQL, OWL.js, QWeb, XML-RPC and REST integrations, Docker, Nginx and Odoo.sh</b>, with Git discipline on every commit.</p>
       </div>
       <div class="about-facts">
@@ -970,6 +989,8 @@ body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(
         <span class="chip hot">OWL.js</span>
         <span class="chip">JavaScript</span>
         <span class="chip">Chart.js</span>
+        <span class="chip">POS</span>
+        <span class="chip">MRP</span>
         <span class="chip cool">XML-RPC / REST</span>
         <span class="chip">Docker</span>
         <span class="chip">Odoo.sh</span>
