@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Osama Ali — Odoo Developer</title>
+<meta name="description" content="Odoo developer in Islamabad. Custom modules, OWL dashboards, QWeb reports, biometric &amp; API integrations, and v13→v19 migrations." />
+<meta name="theme-color" content="#101418" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Osama Ali — Odoo Developer" />
+<meta property="og:description" content="Custom Odoo modules, OWL dashboards, biometric integrations and v13→v19 migrations." />
+<meta name="twitter:card" content="summary" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='6' width='20' height='20' rx='3' fill='none' stroke='%23d07a33' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23d07a33'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --ink:#101418;
+  --ink-2:#161b20;
+  --ink-3:#1c2228;
+  --line:#262d33;
+  --line-hi:#39424a;
+  --paper:#ede8dc;
+  --paper-2:#e4ddcd;
+  --paper-line:#cfc6b1;
+  --paper-ink:#1b1e20;
+  --paper-mut:#5c5a52;
+  --copper:#d07a33;
+  --copper-hot:#e8934a;
+  --copper-soft:rgba(208,122,51,.13);
+  --steel:#8fb2c4;
+  --steel-soft:rgba(143,178,196,.12);
+  --ok:#7fbf7a;
+  --wa:#25D366;
+  --text:#e9e5da;
+  --mut:#9a978e;
+  --dim:#61666c;
+  --disp:'Instrument Serif',Georgia,serif;
+  --body:'Archivo',system-ui,sans-serif;
+  --mono:'Space Mono','Courier New',monospace;
+  --maxw:1240px;
+  --pad:clamp(1rem,4vw,2.5rem);
+  --hdr:64px;
+  --r:10px;
+}
+
+/* ================= RESET ================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:300;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img,svg{max-width:100%;display:block}
+a:focus-visible,button:focus-visible,summary:focus-visible{
+  outline:2px solid var(--copper);outline-offset:3px;border-radius:4px;
+}
+.skip-link{
+  position:absolute;left:1rem;top:-100%;z-index:300;
+  background:var(--copper);color:var(--ink);
+  font-family:var(--mono);font-size:.8rem;padding:.6rem 1rem;border-radius:6px;
+  transition:top .2s;
+}
+.skip-link:focus{top:1rem}
+section[id]{scroll-margin-top:calc(var(--hdr) + 16px)}
+
+/* Blueprint grid atmosphere */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;
+  opacity:.28;
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,black,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,black,transparent 75%);
+}
+main,header,footer{position:relative;z-index:1}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+/* ================= HEADER ================= */
+header{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(16,20,24,.78);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:.75rem;min-height:var(--hdr);padding-block:.55rem}
+.brand{font-family:var(--disp);font-size:1.35rem;letter-spacing:-.01em;display:flex;align-items:center;gap:.6rem;white-space:nowrap}
+.brand-mark{
+  width:14px;height:14px;border:2px solid var(--copper);border-radius:3px;flex-shrink:0;position:relative;
+}
+.brand-mark::after{content:"";position:absolute;inset:3px;background:var(--copper);border-radius:1px}
+.nav-links{display:none;gap:1.9rem;font-family:var(--mono);font-size:.74rem;color:var(--mut);text-transform:uppercase;letter-spacing:.09em}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--copper-hot)}
+.nav-cta{display:none}
+@media (min-width:920px){.nav-links{display:flex}.nav-cta{display:inline-flex}}
+
+.menu-btn{
+  display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  width:44px;height:44px;border:1px solid var(--line-hi);border-radius:10px;transition:border-color .2s;
+}
+.menu-btn:hover{border-color:var(--copper)}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;transition:transform .25s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media (min-width:920px){.menu-btn{display:none}}
+
+.mobile-nav{
+  position:fixed;top:var(--hdr);left:0;right:0;z-index:59;
+  background:rgba(16,20,24,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line-hi);
+  padding:.6rem var(--pad) calc(1.4rem + env(safe-area-inset-bottom));
+  display:grid;gap:.2rem;
+  transform:translateY(-8px);opacity:0;visibility:hidden;
+  transition:transform .25s,opacity .25s,visibility .25s;
+}
+.mobile-nav.open{transform:translateY(0);opacity:1;visibility:visible}
+.mobile-nav a{
+  font-family:var(--mono);font-size:.92rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text);
+  padding:.95rem .25rem;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;min-height:48px;
+}
+.mobile-nav a .arrow{color:var(--copper)}
+.mobile-nav .btn{margin-top:1rem;justify-content:center;border-bottom:none}
+@media (min-width:920px){.mobile-nav{display:none}}
+
+/* ================= BUTTONS ================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.72rem 1.25rem;border-radius:999px;
+  font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.01em;
+  transition:transform .25s,box-shadow .25s,background .25s,border-color .25s,color .25s;
+  white-space:nowrap;min-height:44px;
+}
+.btn-primary{background:var(--copper);color:#14100b}
+.btn-primary:hover{background:var(--copper-hot);transform:translateY(-2px);box-shadow:0 12px 32px -8px rgba(208,122,51,.5)}
+.btn-ghost{color:var(--text);border:1px solid var(--line-hi)}
+.btn-ghost:hover{border-color:var(--copper);color:var(--copper-hot)}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:#1ebe5b;transform:translateY(-2px);box-shadow:0 12px 32px -8px rgba(37,211,102,.45);color:#fff}
+.btn-large{padding:1rem 1.6rem;font-size:.85rem}
+.wa-icon{width:18px;height:18px;flex-shrink:0}
+.arrow{display:inline-block;transition:transform .25s}
+.btn:hover .arrow{transform:translateX(3px)}
+@media (max-width:460px){.btn-large{width:100%}}
+
+/* ================= HERO ================= */
+.hero{padding-block:clamp(2.6rem,8vw,6rem) clamp(2rem,6vw,4rem)}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.45rem .95rem;border:1px solid var(--line-hi);border-radius:999px;
+  font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);
+  margin-bottom:1.9rem;
+}
+.live{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px rgba(127,191,122,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.85)}}
+.hero-title{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(2.5rem,8vw,5.6rem);
+  line-height:1.02;letter-spacing:-.02em;
+  max-width:15ch;text-wrap:balance;margin-bottom:1.5rem;
+}
+.hero-title em{font-style:italic;color:var(--copper-hot)}
+.hero-sub{
+  font-size:clamp(1rem,1.6vw,1.2rem);color:var(--mut);
+  max-width:56ch;line-height:1.55;margin-bottom:2.3rem;
+}
+.hero-sub b{color:var(--text);font-weight:500}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+
+/* Document-chain schematic (signature) */
+.chain{
+  border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,var(--ink-2),var(--ink));
+  padding:clamp(1rem,3vw,1.8rem);
+  margin-bottom:clamp(2.2rem,5vw,3.4rem);
+  overflow:hidden;
+}
+.chain-head{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+  font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);
+  margin-bottom:1rem;
+}
+.chain-head b{color:var(--steel);font-weight:400}
+.chain-track{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.chain-node{position:relative;padding:0 .35rem;text-align:center}
+.chain-node::before{
+  content:"";position:absolute;top:14px;left:calc(-50% + 16px);right:calc(50% + 16px);
+  height:0;border-top:2px dashed var(--line-hi);
+}
+.chain-node:first-child::before{display:none}
+.chain-node.done::before{border-color:var(--copper)}
+.chain-dot{
+  width:28px;height:28px;margin:0 auto .6rem;border-radius:50%;
+  border:2px solid var(--line-hi);background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.72rem;color:var(--dim);
+  transition:border-color .4s,color .4s,background .4s,box-shadow .4s;
+  position:relative;z-index:1;
+}
+.chain-node.done .chain-dot{border-color:var(--copper);color:var(--copper-hot);background:var(--copper-soft)}
+.chain-node.active .chain-dot{border-color:var(--copper-hot);color:var(--ink);background:var(--copper-hot);box-shadow:0 0 18px rgba(232,147,74,.5)}
+.chain-label{font-family:var(--mono);font-size:clamp(.58rem,1.6vw,.72rem);letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
+.chain-state{font-family:var(--mono);font-size:clamp(.55rem,1.5vw,.68rem);color:var(--dim);margin-top:.25rem;min-height:1.2em}
+.chain-node.done .chain-state{color:var(--ok)}
+.chain-node.active .chain-state{color:var(--copper-hot)}
+@media (max-width:600px){
+  .chain-track{grid-template-columns:1fr;gap:.35rem}
+  .chain-node{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:.85rem;text-align:left;padding:.5rem .1rem}
+  .chain-dot{margin:0}
+  .chain-node::before{top:-10px;left:15px;right:auto;height:16px;width:0;border-top:none;border-left:2px dashed var(--line-hi)}
+  .chain-node.done::before{border-left-color:var(--copper)}
+  .chain-state{margin-top:0;text-align:right}
+}
+
+.hero-meta{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.5rem clamp(1.25rem,4vw,3rem);
+  padding-top:2.2rem;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:.78rem;color:var(--mut);
+}
+@media (min-width:800px){.hero-meta{grid-template-columns:repeat(4,auto);justify-content:start}}
+.hero-meta strong{
+  display:block;color:var(--text);font-family:var(--disp);font-weight:400;
+  font-size:clamp(1.6rem,3vw,2.3rem);letter-spacing:-.02em;margin-bottom:.15rem;
+}
+.hero-meta strong i{font-style:italic;color:var(--copper-hot)}
+
+/* ================= TICKER ================= */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding-block:1.05rem;background:var(--ink-2)}
+.ticker-inner{
+  display:flex;gap:3.5rem;white-space:nowrap;
+  animation:scroll 34s linear infinite;
+  font-family:var(--mono);font-size:.8rem;color:var(--mut);letter-spacing:.05em;
+}
+.ticker:hover .ticker-inner{animation-play-state:paused}
+.ticker-inner span{display:inline-flex;align-items:center;gap:3.5rem}
+.ticker-inner b{color:var(--copper);font-weight:400}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ================= SECTIONS ================= */
+section{padding-block:clamp(3.4rem,8vw,6.2rem);border-top:1px solid var(--line)}
+.sec-label{
+  font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.18em;
+  color:var(--copper);margin-bottom:1.3rem;display:flex;align-items:center;gap:.7rem;
+}
+.sec-label::before{content:"";width:28px;height:1px;background:var(--copper)}
+.sec-title{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(1.9rem,4.6vw,3.4rem);line-height:1.06;letter-spacing:-.015em;
+  max-width:24ch;text-wrap:balance;margin-bottom:1.1rem;
+}
+.sec-title em{font-style:italic;color:var(--copper-hot)}
+.sec-lead{color:var(--mut);font-size:1.03rem;max-width:60ch;margin-bottom:2.8rem}
+
+/* Paper (inverted) sections */
+.paper{background:var(--paper);color:var(--paper-ink);border-top:1px solid var(--paper-line)}
+.paper .sec-label{color:#a85e22}
+.paper .sec-label::before{background:#a85e22}
+.paper .sec-title em{color:#b1631f}
+.paper .sec-lead{color:var(--paper-mut)}
+
+/* Reveal */
+[data-reveal]{opacity:1;transform:none}
+@media (prefers-reduced-motion:no-preference){
+  [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].in-view{opacity:1;transform:translateY(0)}
+  .reveal{opacity:0;transform:translateY(18px);animation:reveal .85s cubic-bezier(.16,1,.3,1) forwards}
+  .reveal-1{animation-delay:.05s}.reveal-2{animation-delay:.15s}.reveal-3{animation-delay:.28s}
+  .reveal-4{animation-delay:.42s}.reveal-5{animation-delay:.56s}.reveal-6{animation-delay:.7s}
+  @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+}
+
+/* ================= PROBLEM ================= */
+.problem-grid{
+  display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));
+}
+.problem-cell{background:var(--ink);padding:clamp(1.4rem,3vw,2.2rem);transition:background .3s}
+.problem-cell:hover{background:var(--ink-2)}
+.problem-tag{font-family:var(--mono);font-size:.72rem;color:var(--steel);margin-bottom:1rem;letter-spacing:.08em}
+.problem-cell h3{font-family:var(--disp);font-weight:400;font-size:1.4rem;line-height:1.18;margin-bottom:.55rem}
+.problem-cell p{color:var(--mut);font-size:.92rem}
+
+/* ================= DIAGNOSER (signature 2) ================= */
+.diag{
+  border:1px solid var(--line-hi);border-radius:14px;
+  background:linear-gradient(180deg,var(--ink-3),var(--ink-2));
+  padding:clamp(1.4rem,4vw,2.6rem);
+}
+.diag-step{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--steel);margin-bottom:.9rem}
+.diag-chips{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.8rem}
+.diag-chip{
+  font-family:var(--mono);font-size:.78rem;padding:.6rem 1rem;min-height:44px;
+  border:1px solid var(--line-hi);border-radius:999px;background:var(--ink);color:var(--text);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.diag-chip:hover{border-color:var(--copper)}
+.diag-chip[aria-pressed="true"]{border-color:var(--copper);background:var(--copper-soft);color:var(--copper-hot)}
+.diag-out{
+  border-top:1px dashed var(--line-hi);padding-top:1.6rem;
+  display:grid;gap:1.2rem;
+}
+@media (min-width:820px){.diag-out{grid-template-columns:1.3fr 1fr;align-items:start}}
+.diag-verdict h4{font-family:var(--disp);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.7rem);margin-bottom:.4rem}
+.diag-verdict h4 em{font-style:italic;color:var(--copper-hot)}
+.diag-verdict p{color:var(--mut);font-size:.95rem;max-width:52ch}
+.diag-actions{display:flex;flex-direction:column;gap:.7rem}
+.diag-note{font-family:var(--mono);font-size:.7rem;color:var(--dim);margin-top:.2rem}
+
+/* ================= CARD GRIDS (services / work) ================= */
+.cards{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.card{
+  background:var(--ink-2);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.8rem;position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.card::before{
+  content:"";position:absolute;inset:0;border-radius:var(--r);
+  background:linear-gradient(135deg,var(--copper-soft),transparent 60%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.card:hover{border-color:var(--line-hi);transform:translateY(-3px)}
+.card:hover::before{opacity:1}
+.card-icon{
+  width:42px;height:42px;border-radius:8px;background:var(--copper-soft);color:var(--copper-hot);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;
+  font-family:var(--mono);font-size:.95rem;font-weight:700;
+}
+.card h3{font-family:var(--disp);font-weight:400;font-size:1.32rem;margin-bottom:.55rem}
+.card p{color:var(--mut);font-size:.92rem;line-height:1.55}
+.card-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.15rem;padding-top:1.15rem;border-top:1px solid var(--line)}
+.tag{font-family:var(--mono);font-size:.68rem;color:var(--mut);padding:.25rem .55rem;background:var(--ink);border:1px solid var(--line);border-radius:4px}
+
+/* ================= PACKAGES (paper) ================= */
+.packages{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr))}
+.pkg{
+  background:#fdfaf3;border:1px solid var(--paper-line);border-radius:12px;
+  padding:2rem 1.75rem;display:flex;flex-direction:column;position:relative;
+  transition:border-color .3s,box-shadow .3s;
+}
+.pkg:hover{border-color:#b1631f;box-shadow:0 14px 30px -18px rgba(60,40,10,.35)}
+.pkg.featured{border:2px solid #b1631f;background:linear-gradient(180deg,#fff6e8,#fdfaf3)}
+.pkg.featured::before{
+  content:"Most booked";position:absolute;top:-11px;left:1.6rem;
+  background:#b1631f;color:#fff6e8;font-family:var(--mono);font-size:.68rem;font-weight:700;
+  padding:.28rem .7rem;border-radius:999px;letter-spacing:.05em;
+}
+@media (max-width:759px){.pkg.featured{order:-1;margin-top:12px}}
+.pkg-name{font-family:var(--mono);font-size:.74rem;color:var(--paper-mut);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.9rem}
+.pkg-headline{font-family:var(--disp);font-weight:400;font-size:1.85rem;line-height:1.08;margin-bottom:.55rem}
+.pkg-tagline{color:var(--paper-mut);font-size:.94rem;margin-bottom:1.4rem}
+.pkg-price{font-family:var(--disp);font-size:2.2rem;line-height:1;margin-bottom:.3rem;color:var(--paper-ink)}
+.pkg-price span{font-family:var(--mono);font-size:.82rem;color:var(--paper-mut);margin-left:.3rem}
+.pkg-duration{font-family:var(--mono);font-size:.76rem;color:var(--paper-mut);margin-bottom:1.6rem;padding-bottom:1.4rem;border-bottom:1px dashed var(--paper-line)}
+.pkg-features{list-style:none;margin-bottom:1.8rem;flex:1}
+.pkg-features li{display:flex;align-items:flex-start;gap:.6rem;font-size:.92rem;padding-block:.42rem;color:#3a3a34}
+.pkg-features li::before{content:"→";color:#b1631f;font-family:var(--mono);flex-shrink:0;margin-top:.05em}
+.pkg .btn{width:100%}
+.pkg .btn-primary{background:#b1631f;color:#fff6e8}
+.pkg .btn-primary:hover{background:#c9772c;box-shadow:0 12px 28px -10px rgba(177,99,31,.5)}
+.pkg .btn-ghost{border-color:var(--paper-line);color:var(--paper-ink)}
+.pkg .btn-ghost:hover{border-color:#b1631f;color:#b1631f}
+
+/* ================= PROCESS ================= */
+.process{
+  display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:6px;overflow:hidden;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));
+}
+.step{background:var(--ink);padding:2rem 1.5rem;transition:background .3s}
+.step:hover{background:var(--ink-2)}
+.step-num{font-family:var(--disp);font-style:italic;font-size:2.2rem;color:var(--copper);line-height:1;margin-bottom:1rem}
+.step h4{font-family:var(--disp);font-weight:400;font-size:1.22rem;margin-bottom:.5rem}
+.step p{color:var(--mut);font-size:.88rem;line-height:1.5}
+
+/* ================= ABOUT (paper) ================= */
+.about-grid{display:grid;gap:2.2rem}
+@media (min-width:900px){.about-grid{grid-template-columns:1.35fr 1fr;align-items:start}}
+.about-copy p{color:#3a3a34;font-size:1.02rem;line-height:1.65;margin-bottom:1.1rem;max-width:62ch}
+.about-copy b{font-weight:600;color:var(--paper-ink)}
+.about-facts{display:grid;gap:1px;background:var(--paper-line);border:1px solid var(--paper-line);border-radius:8px;overflow:hidden}
+.fact{background:#fdfaf3;padding:1.15rem 1.3rem;display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
+.fact-k{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--paper-mut)}
+.fact-v{font-family:var(--body);font-weight:500;font-size:.95rem;text-align:right;color:var(--paper-ink)}
+
+/* ================= STACK ================= */
+.stack-grid{display:grid;gap:2.4rem}
+@media (min-width:900px){.stack-grid{grid-template-columns:1fr 1.4fr;align-items:start}}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{
+  font-family:var(--mono);font-size:.76rem;padding:.5rem .9rem;min-height:38px;display:inline-flex;align-items:center;
+  border:1px solid var(--line-hi);border-radius:999px;background:var(--ink);transition:border-color .2s,color .2s;
+}
+.chip:hover{border-color:var(--copper);color:var(--copper-hot)}
+.chip.hot{background:var(--copper-soft);border-color:var(--copper);color:var(--copper-hot)}
+.chip.cool{background:var(--steel-soft);border-color:var(--steel);color:var(--steel)}
+
+/* ================= WHY ================= */
+.why-grid{display:grid;gap:2.2rem 3rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.why-item{display:flex;gap:1.2rem;align-items:flex-start}
+.why-mark{font-family:var(--disp);font-style:italic;font-size:1.7rem;color:var(--copper);line-height:1;flex-shrink:0;margin-top:.15rem}
+.why-item h4{font-family:var(--disp);font-weight:400;font-size:1.25rem;margin-bottom:.45rem}
+.why-item p{color:var(--mut);font-size:.94rem}
+
+/* ================= FAQ ================= */
+.faq{max-width:780px}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item:first-child{border-top:1px solid var(--line)}
+.faq-q{
+  width:100%;text-align:left;padding:1.35rem 0;min-height:52px;
+  display:flex;align-items:center;justify-content:space-between;gap:1.4rem;
+  font-family:var(--disp);font-size:clamp(1.05rem,2vw,1.2rem);transition:color .2s;
+}
+.faq-q:hover{color:var(--copper-hot)}
+.faq-toggle{color:var(--copper);font-family:var(--mono);font-size:1.4rem;transition:transform .3s;flex-shrink:0}
+.faq-item[open] .faq-toggle{transform:rotate(45deg)}
+.faq-a{padding:0 0 1.5rem 0;color:var(--mut);font-size:.97rem;line-height:1.65;max-width:66ch}
+details summary{list-style:none;cursor:pointer}
+details summary::-webkit-details-marker{display:none}
+
+/* ================= FINAL CTA ================= */
+.cta-block{
+  background:radial-gradient(ellipse at top,var(--copper-soft),transparent 70%),var(--ink-2);
+  border:1px solid var(--line-hi);border-radius:16px;
+  padding:clamp(2.4rem,6vw,5rem) clamp(1.2rem,4vw,3rem);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-block::before,.cta-block::after{
+  content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+  background:var(--copper);filter:blur(130px);opacity:.16;
+}
+.cta-block::before{top:-60px;left:-60px}
+.cta-block::after{bottom:-60px;right:-60px}
+.cta-block>*{position:relative}
+.cta-title{
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(1.7rem,4.6vw,3rem);line-height:1.06;letter-spacing:-.015em;
+  max-width:22ch;margin:0 auto 1.15rem;text-wrap:balance;
+}
+.cta-title em{font-style:italic;color:var(--copper-hot)}
+.cta-sub{color:var(--mut);max-width:50ch;margin:0 auto 2rem;font-size:1rem}
+.cta-buttons{display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center}
+.cta-qr{margin-top:2.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem}
+.cta-qr-divider{
+  display:flex;align-items:center;gap:.85rem;width:100%;max-width:320px;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);
+}
+.cta-qr-divider::before,.cta-qr-divider::after{content:"";flex:1;height:1px;background:var(--line-hi)}
+.cta-qr-card{
+  display:block;width:168px;height:168px;border-radius:14px;overflow:hidden;background:#fff;
+  box-shadow:0 12px 28px -10px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08);
+  transition:transform .25s,box-shadow .25s;
+}
+.cta-qr-card:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 18px 36px -10px rgba(37,211,102,.4)}
+.cta-qr-card img{width:100%;height:100%;object-fit:cover}
+@media (max-width:700px){.cta-qr{display:none}}
+
+/* ================= FOOTER ================= */
+footer{border-top:1px solid var(--line);padding-block:2.4rem;margin-top:3.5rem}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.4rem;font-family:var(--mono);font-size:.78rem;color:var(--mut)}
+.foot a:hover{color:var(--copper-hot)}
+.foot-links{display:flex;gap:1.4rem;flex-wrap:wrap}
+
+/* ================= FLOATING WA ================= */
+.wa-float{
+  position:fixed;bottom:calc(1.3rem + env(safe-area-inset-bottom));right:calc(1.3rem + env(safe-area-inset-right));
+  z-index:100;width:58px;height:58px;border-radius:50%;background:var(--wa);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.45);
+  transition:transform .25s,box-shadow .25s;
+  animation:waPulse 2.4s ease-in-out infinite;
+}
+.wa-float:hover{transform:scale(1.08);box-shadow:0 12px 32px rgba(37,211,102,.6);animation:none}
+.wa-float svg{width:30px;height:30px;color:#fff}
+.wa-float-label{
+  position:absolute;right:calc(100% + .6rem);top:50%;transform:translateY(-50%);
+  background:var(--ink-2);border:1px solid var(--line-hi);color:var(--text);
+  padding:.5rem .85rem;border-radius:8px;font-family:var(--mono);font-size:.72rem;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+}
+.wa-float:hover .wa-float-label{opacity:1;transform:translateY(-50%) translateX(-4px)}
+@keyframes waPulse{
+  0%,100%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 0 rgba(37,211,102,.5)}
+  50%{box-shadow:0 8px 24px rgba(37,211,102,.45),0 0 0 14px rgba(37,211,102,0)}
+}
+@media (max-width:600px){
+  .wa-float{width:52px;height:52px}
+  .wa-float svg{width:26px;height:26px}
+  .wa-float-label{display:none}
+}
+
+/* ================= MOTION & POLISH LAYER ================= */
+.progress{
+  position:absolute;left:0;bottom:-1px;height:2px;width:100%;z-index:61;
+  transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--copper),var(--copper-hot));
+}
+header{transition:transform .35s ease}
+header.hidden{transform:translateY(-100%)}
+.nav-links a{position:relative;padding-block:.3rem}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--copper-hot);transition:width .25s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--copper-hot)}
+
+.btn{position:relative;overflow:hidden}
+.btn::after{
+  content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.32),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;pointer-events:none;
+}
+.btn:hover::after{left:135%}
+
+.ticker{
+  mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent);
+}
+
+body::before{inset:-140px 0;will-change:transform;transform:translateY(calc(var(--sy,0)*-1px))}
+
+.cards{perspective:950px}
+
+.faq-item[open] .faq-a{animation:faqIn .35s ease}
+@keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+.cursor-glow{
+  position:fixed;top:-999px;left:-999px;width:540px;height:540px;border-radius:50%;
+  pointer-events:none;z-index:2;transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;
+  background:radial-gradient(circle,rgba(208,122,51,.07),transparent 65%);
+}
+@media (pointer:coarse){.cursor-glow{display:none}}
+
+.to-top{
+  position:fixed;bottom:calc(1.3rem + env(safe-area-inset-bottom));left:calc(1.3rem + env(safe-area-inset-left));
+  z-index:99;width:46px;height:46px;border-radius:50%;
+  border:1px solid var(--line-hi);background:rgba(22,27,32,.85);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  color:var(--copper-hot);font-family:var(--mono);font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .3s,transform .3s,visibility .3s,border-color .2s;
+}
+.to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.to-top:hover{border-color:var(--copper)}
+
+@media (prefers-reduced-motion:no-preference){
+  [data-reveal] :is(.card,.problem-cell,.step,.pkg,.why-item,.fact){opacity:0}
+  [data-reveal].in-view :is(.card,.problem-cell,.step,.pkg,.why-item,.fact){
+    animation:riseIn .7s cubic-bezier(.16,1,.3,1) forwards;
+    animation-delay:calc(var(--i,0)*75ms);
+  }
+  @keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+}
+
+@media (max-width:380px){
+  :root{--pad:.9rem}
+  .hero-title{font-size:2.15rem}
+  .card,.pkg{padding:1.35rem 1.15rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker{overflow-x:auto}
+  .ticker-inner{animation:none}
+  .live,.wa-float{animation:none}
+  html{scroll-behavior:auto}
+  header{transition:none}
+  header.hidden{transform:none}
+  .cursor-glow{display:none}
+  .btn::after{display:none}
+  .faq-item[open] .faq-a{animation:none}
+  body::before{transform:none}
+}
+</style>
+</head>
+<body>
+
+<a href="#services" class="skip-link">Skip to content</a>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="wrap nav">
+    <a href="#" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Osama&nbsp;Ali
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#diagnose">Diagnose</a>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#packages">Work with me</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.6rem;">
+      <a href="#book" class="btn btn-primary nav-cta">Contact <span class="arrow">→</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+  <a href="#diagnose">Diagnose <span class="arrow">→</span></a>
+  <a href="#services">Services <span class="arrow">→</span></a>
+  <a href="#work">Work <span class="arrow">→</span></a>
+  <a href="#packages">Work with me <span class="arrow">→</span></a>
+  <a href="#about">About <span class="arrow">→</span></a>
+  <a href="#faq">FAQ <span class="arrow">→</span></a>
+  <a href="#book" class="btn btn-primary">Contact <span class="arrow">→</span></a>
+</nav>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="border-top:none;">
+  <div class="wrap">
+    <span class="hero-eyebrow reveal reveal-1"><span class="live"></span> Available for freelance &amp; remote Odoo work</span>
+
+    <h1 class="hero-title reveal reveal-2">Custom Odoo modules that <em>survive the next upgrade.</em></h1>
+
+    <p class="hero-sub reveal reveal-3">
+      I'm Osama Ali, an Odoo developer based in Islamabad. I build custom modules, OWL dashboards,
+      QWeb reports, biometric and API integrations, and I move production databases
+      <b>from v13 all the way to v19</b> — with proper inheritance, coded security rules,
+      and Git discipline on every commit. No Studio shortcuts that die on upgrade.
+    </p>
+
+    <div class="hero-ctas reveal reveal-4">
+      <a href="#book" class="btn btn-primary btn-large">Start a conversation <span class="arrow">&rarr;</span></a>
+      <a href="#work" class="btn btn-ghost btn-large">See selected work</a>
+    </div>
+
+    <!-- Signature: live document chain -->
+    <div class="chain reveal reveal-5" aria-label="Animated Odoo document chain, quotation through payment">
+      <div class="chain-head">
+        <span>SO/2026/0F41 &middot; <b>document chain</b></span>
+        <span id="chainStatus">syncing&hellip;</span>
+      </div>
+      <div class="chain-track" id="chainTrack">
+        <div class="chain-node"><div class="chain-dot">Q</div><div class="chain-label">Quotation</div><div class="chain-state">draft</div></div>
+        <div class="chain-node"><div class="chain-dot">SO</div><div class="chain-label">Sale order</div><div class="chain-state">&mdash;</div></div>
+        <div class="chain-node"><div class="chain-dot">DO</div><div class="chain-label">Delivery</div><div class="chain-state">&mdash;</div></div>
+        <div class="chain-node"><div class="chain-dot">INV</div><div class="chain-label">Invoice</div><div class="chain-state">&mdash;</div></div>
+        <div class="chain-node"><div class="chain-dot">PAY</div><div class="chain-label">Payment</div><div class="chain-state">&mdash;</div></div>
+      </div>
+    </div>
+
+    <div class="hero-meta reveal reveal-6">
+      <div><strong><span data-count="3">0</span><i>+</i></strong>Years building on Odoo</div>
+      <div><strong>v13 <i>&rarr;</i> v19</strong>Versions worked across</div>
+      <div><strong><span data-count="20">0</span><i>+</i></strong>Custom modules shipped</div>
+      <div><strong><span data-count="24">0</span> <i>hrs</i></strong>Typical reply time</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
+    <span aria-hidden="true">ODOO 17 <b>&#9670;</b> ODOO 18 <b>&#9670;</b> ODOO 19 <b>&#9670;</b> CUSTOM MODULES <b>&#9670;</b> OWL.js <b>&#9670;</b> QWeb REPORTS <b>&#9670;</b> PYTHON <b>&#9670;</b> POSTGRESQL <b>&#9670;</b> XML-RPC <b>&#9670;</b> ZKTeco BIOMETRICS <b>&#9670;</b> ZATCA E-INVOICING <b>&#9670;</b> DOCKER <b>&#9670;</b> ODOO.SH <b>&#9670;</b> NGINX + SSL <b>&#9670;</b> DATA MIGRATIONS <b>&#9670;</b></span>
+  </div>
+</div>
+
+<!-- ============ PROBLEM ============ -->
+<section id="problem">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">Where it hurts</div>
+    <h2 class="sec-title">If the ERP were working, you wouldn't be reading this. <em>Here's what's usually wrong.</em></h2>
+    <p class="sec-lead">Most struggling Odoo installs aren't broken — they're untuned. That's a fixable engineering problem, not a forklift replacement.</p>
+    <div class="problem-grid">
+      <div class="problem-cell">
+        <div class="problem-tag">PATTERN A · misalignment</div>
+        <h3>The system models a business — just not yours.</h3>
+        <p>Stock counts drift. Sales keeps a parallel spreadsheet. Reports exist, but nobody bets a decision on them.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-tag">PATTERN B · quiet debt</div>
+        <h3>Studio fields where modules should be.</h3>
+        <p>The last freelancer shipped shortcuts, not code. Every upgrade is a coin flip, and nothing has an audit trail.</p>
+      </div>
+      <div class="problem-cell">
+        <div class="problem-tag">PATTERN C · untrusted data</div>
+        <h3>The migration "finished". Finance disagrees.</h3>
+        <p>Pricelists, invoices, valuations — close, not exact. Until it reconciles to the rupee or cent, it isn't done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIAGNOSER ============ -->
+<section id="diagnose">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">30-second diagnosis</div>
+    <h2 class="sec-title">Tap your bottleneck. Get a <em>starting point.</em></h2>
+    <p class="sec-lead">Pick what hurts most right now. You'll get the engagement I'd recommend and a pre-written brief — send it and I'll reply within 4 business hours.</p>
+
+    <div class="diag">
+      <div class="diag-step">01 / What's the pain?</div>
+      <div class="diag-chips" id="diagChips" role="group" aria-label="Select your main bottleneck">
+        <button class="diag-chip" data-k="reconcile" aria-pressed="false">Inventory / accounting won't reconcile</button>
+        <button class="diag-chip" data-k="mess" aria-pressed="false">Previous developer's mess</button>
+        <button class="diag-chip" data-k="module" aria-pressed="false">Need a custom module or report</button>
+        <button class="diag-chip" data-k="integration" aria-pressed="false">Connect Odoo to another system</button>
+        <button class="diag-chip" data-k="migration" aria-pressed="false">Stuck or risky version migration</button>
+        <button class="diag-chip" data-k="ongoing" aria-pressed="false">Need ongoing senior support</button>
+      </div>
+
+      <div class="diag-out">
+        <div class="diag-verdict">
+          <h4 id="diagTitle">Waiting on you. <em>Tap one above.</em></h4>
+          <p id="diagBody">Every path starts with a free 30-minute call — the diagnosis just tells us both where to aim it.</p>
+        </div>
+        <div class="diag-actions">
+          <a class="btn btn-primary" id="diagMail" href="#book">Email this brief <span class="arrow">→</span></a>
+          <a class="btn btn-wa" href="https://wa.me/923000000000" target="_blank" rel="noopener">
+            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp me
+          </a>
+          <div class="diag-note" id="diagNote">The email button pre-fills your brief — you just press send.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">What I do</div>
+    <h2 class="sec-title">Six things I build. Each one ends in <em>something shipped.</em></h2>
+    <p class="sec-lead">Scoped work with a deliverable at the end &mdash; a module, a report, a migrated database &mdash; not a vague support arrangement.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">01</div>
+        <h3>Custom Modules</h3>
+        <p>ORM-first Python + XML modules with proper inheritance, record rules and access rights coded on every model, and no Studio shortcuts that break on the next upgrade.</p>
+        <div class="card-tags"><span class="tag">Python</span><span class="tag">XML</span><span class="tag">Odoo 13 &ndash; 19</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">02</div>
+        <h3>OWL Dashboards</h3>
+        <p>Client-action dashboards built in OWL with lazy-loaded tabs and Chart.js visualisations &mdash; KPI views your managers actually open, not another list view.</p>
+        <div class="card-tags"><span class="tag">OWL.js</span><span class="tag">Chart.js</span><span class="tag">Client actions</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">03</div>
+        <h3>QWeb Reports &amp; Documents</h3>
+        <p>Pixel-accurate PDFs and Excel exports: invoices, packing lists, gate passes, withholding-tax statements, payslips &mdash; matched to the paperwork your business already uses.</p>
+        <div class="card-tags"><span class="tag">QWeb</span><span class="tag">wkhtmltopdf</span><span class="tag">openpyxl</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">04</div>
+        <h3>Integrations</h3>
+        <p>ZKTeco biometric devices, XML-RPC sync between Odoo instances, NocoDB, ZATCA e-invoicing and REST APIs &mdash; with real error handling, not fire-and-forget calls.</p>
+        <div class="card-tags"><span class="tag">XML-RPC</span><span class="tag">REST</span><span class="tag">Biometrics</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">05</div>
+        <h3>Version Migrations</h3>
+        <p>v13 through v19. Breaking-change work done properly: <code>hr.contract</code> &rarr; <code>hr.version</code>, <code>name_get()</code> removal, <code>@api.model_create_multi</code>, group restructuring &mdash; module by module, tested on staging.</p>
+        <div class="card-tags"><span class="tag">Cross-version</span><span class="tag">PostgreSQL</span><span class="tag">Staging first</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">06</div>
+        <h3>Deployment &amp; Support</h3>
+        <p>Docker and Odoo.sh deployments, Nginx + SSL with correct websocket routing, systemd services, worker tuning, backups, and hands-on production troubleshooting.</p>
+        <div class="card-tags"><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Odoo.sh</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELECTED WORK ============ -->
+<section id="work">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">Selected work</div>
+    <h2 class="sec-title">Modules that run <em>real operations.</em></h2>
+    <p class="sec-lead">A sample of delivered modules. Client data stays confidential &mdash; code walkthroughs available on request.</p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">A</div>
+        <h3>Cafeteria management with biometric check-in</h3>
+        <p>A mess-management system wired directly to ZKTeco biometric devices: employees are identified at the device, meals and tea tokens are booked against them, and an OWL dashboard gives management daily consumption reports and an audit trail.</p>
+        <div class="card-tags"><span class="tag">ZKTeco</span><span class="tag">OWL dashboard</span><span class="tag">Reporting</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">B</div>
+        <h3>Vendor &amp; purchaser KPI dashboard</h3>
+        <p>An OWL client action for the purchase team: lazy-loaded tabs, Chart.js visualisations, vendor price tracking, and reorder-level and zero-stock views &mdash; so buying decisions come off one screen instead of five reports.</p>
+        <div class="card-tags"><span class="tag">OWL.js</span><span class="tag">Chart.js</span><span class="tag">Purchase</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">C</div>
+        <h3>Recruitment module with public careers portal</h3>
+        <p>A custom applicant flow whose form mirrors the company's physical application sheet, published as a public careers portal, with QR-code generation and OCR scanning so paper applications land in Odoo without retyping.</p>
+        <div class="card-tags"><span class="tag">HR</span><span class="tag">Website portal</span><span class="tag">OCR</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">D</div>
+        <h3>Exhibition visitor registration</h3>
+        <p>Built for international trade fairs: OWL client actions for visitor capture, visitor lists, and a live dashboard, plus a QR and business-card scanner that turns booth conversations into follow-up records with catalogues and email templates attached.</p>
+        <div class="card-tags"><span class="tag">OWL.js</span><span class="tag">Card scanner</span><span class="tag">Events</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">E</div>
+        <h3>Odoo 17 &rarr; 19 migration of custom modules</h3>
+        <p>A full custom-module estate carried across two major versions: <code>hr.contract</code> &rarr; <code>hr.version</code>, <code>name_get()</code> removal, <code>@api.model_create_multi</code>, group restructuring onto <code>res.groups.privilege</code>, and payslip computation repaired end to end.</p>
+        <div class="card-tags"><span class="tag">Migration</span><span class="tag">Payroll</span><span class="tag">Breaking changes</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">F</div>
+        <h3>Packing lists, dispatch &amp; cross-instance sync</h3>
+        <p>A custom packing-list module with its own dispatched state and auto-dispatch on delivery validation, alongside an employee-sync module that keeps a local database and an Odoo.sh instance aligned over XML-RPC.</p>
+        <div class="card-tags"><span class="tag">Inventory</span><span class="tag">XML-RPC</span><span class="tag">Odoo.sh</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACKAGES (paper) ============ -->
+<section id="packages" class="paper">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">Ways to work together</div>
+    <h2 class="sec-title">Pick a starting <em>point.</em></h2>
+    <p class="sec-lead">Every engagement starts with a free 30-minute call. After that, you pick the depth that matches the problem.</p>
+
+    <div class="packages">
+      <div class="pkg">
+        <div class="pkg-name">Quick review</div>
+        <h3 class="pkg-headline">Audit &amp; Roadmap</h3>
+        <p class="pkg-tagline">For when something is clearly wrong but nobody can point at it.</p>
+        <div class="pkg-price">On request<span>flat fee</span></div>
+        <div class="pkg-duration">2&ndash;3 business days</div>
+        <ul class="pkg-features">
+          <li>1&times; 60-min discovery call</li>
+          <li>Review of custom modules &amp; configuration</li>
+          <li>Written findings document</li>
+          <li>Prioritised fix list with effort estimates</li>
+          <li>Follow-up questions answered by email</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Start with a review <span class="arrow">&rarr;</span></a>
+      </div>
+
+      <div class="pkg featured">
+        <div class="pkg-name">Fixed scope</div>
+        <h3 class="pkg-headline">Build &amp; Ship</h3>
+        <p class="pkg-tagline">A module, report, integration or migration delivered end to end.</p>
+        <div class="pkg-price">On request<span>per scope</span></div>
+        <div class="pkg-duration">1&ndash;4 weeks</div>
+        <ul class="pkg-features">
+          <li>Written scope &amp; agreed deliverable</li>
+          <li>Custom module, OWL dashboard or QWeb report</li>
+          <li>Integrations and data migration work</li>
+          <li>Staging deploy, then production cutover</li>
+          <li>Post-launch support window</li>
+          <li>Source code and documentation handover</li>
+        </ul>
+        <a href="#book" class="btn btn-primary">Scope my project <span class="arrow">&rarr;</span></a>
+      </div>
+
+      <div class="pkg">
+        <div class="pkg-name">Ongoing</div>
+        <h3 class="pkg-headline">Part-time Support</h3>
+        <p class="pkg-tagline">A steady pair of hands on your Odoo instance, month to month.</p>
+        <div class="pkg-price">On request<span>monthly</span></div>
+        <div class="pkg-duration">Fixed hours, rolling monthly</div>
+        <ul class="pkg-features">
+          <li>Weekly check-in call</li>
+          <li>Continuous module &amp; report development</li>
+          <li>Bug fixes and production troubleshooting</li>
+          <li>Upgrade planning before each release</li>
+          <li>Direct email / WhatsApp access</li>
+        </ul>
+        <a href="#book" class="btn btn-ghost">Discuss ongoing work <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">How it works</div>
+    <h2 class="sec-title">Four steps from <em>"it's broken"</em> to "it ships".</h2>
+    <p class="sec-lead">No surprises, no vague invoices. Every engagement runs on the same rhythm.</p>
+    <div class="process">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Discovery call</h4>
+        <p>30 free minutes. I learn your stack, your team, and what's actually broken — not what the symptom says.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Scoped proposal</h4>
+        <p>Written scope, deliverables, timeline, fixed fee. You sign once. Nothing changes without a written change order.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Build &amp; review</h4>
+        <p>Daily progress on a shared board. Staging deploy mid-sprint so you test the work before production ever sees it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Ship &amp; hand off</h4>
+        <p>Production cutover, documentation, video walkthrough, and 14-day hypercare. Then we're done — cleanly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT (paper) ============ -->
+<section id="about" class="paper">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">The person behind <em>the commits.</em></h2>
+    <div class="about-grid">
+      <div class="about-copy">
+        <p>I'm Osama Ali &mdash; an Odoo developer based in Islamabad, Pakistan, with <b>3+ years of professional Odoo work across versions 13 to 19</b>.</p>
+        <p>Full-time, I'm the in-house Odoo developer at an <b>engineering manufacturer</b>, where I build custom modules, OWL dashboards and QWeb reports, integrate ZKTeco biometric devices with HR and cafeteria workflows, and carry custom modules across major versions. Part-time I work with an <b>ERP consultancy</b> serving clients in Pakistan and Saudi Arabia &mdash; including construction and food-manufacturing businesses.</p>
+        <p>My habit is to sit with the people who use the screen before writing the model: the storekeeper, the HR officer, the accountant. Then the engineering side takes over &mdash; <b>Python, PostgreSQL, OWL.js, QWeb, XML-RPC and REST integrations, Docker, Nginx and Odoo.sh</b>, with Git discipline on every commit.</p>
+      </div>
+      <div class="about-facts">
+        <div class="fact"><span class="fact-k">Base</span><span class="fact-v">Islamabad, Pakistan (remote worldwide)</span></div>
+        <div class="fact"><span class="fact-k">Experience</span><span class="fact-v">3+ years &middot; Odoo v13 &ndash; v19</span></div>
+        <div class="fact"><span class="fact-k">Currently</span><span class="fact-v">In-house Odoo developer + ERP consultancy</span></div>
+        <div class="fact"><span class="fact-k">Education</span><span class="fact-v">BS Software Engineering, Hazara University Mansehra (2024)</span></div>
+        <div class="fact"><span class="fact-k">Languages</span><span class="fact-v">English &middot; Urdu</span></div>
+        <div class="fact"><span class="fact-k">Reply time</span><span class="fact-v">Within 24 hours</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section>
+  <div class="wrap" data-reveal>
+    <div class="stack-grid">
+      <div>
+        <div class="sec-label">The toolkit</div>
+        <h2 class="sec-title" style="font-size:clamp(1.7rem,3.5vw,2.6rem);">Plain Odoo tooling, used <em>properly.</em></h2>
+        <p class="sec-lead" style="margin-bottom:0;">No black boxes. Everything is source code in a Git repository you own and can hand to anyone.</p>
+      </div>
+      <div class="chips">
+        <span class="chip hot">Odoo 13 &ndash; 19</span>
+        <span class="chip">Python</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">XML / QWeb</span>
+        <span class="chip hot">OWL.js</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">Chart.js</span>
+        <span class="chip cool">XML-RPC / REST</span>
+        <span class="chip">Docker</span>
+        <span class="chip">Odoo.sh</span>
+        <span class="chip">Nginx + SSL</span>
+        <span class="chip">Ubuntu / systemd</span>
+        <span class="chip">Git / GitHub</span>
+        <span class="chip cool">ZKTeco biometrics</span>
+        <span class="chip">ZATCA e-invoicing</span>
+        <span class="chip">NocoDB</span>
+        <span class="chip">openpyxl / Excel</span>
+        <span class="chip">wkhtmltopdf</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section>
+  <div class="wrap" data-reveal>
+    <div class="sec-label">Why work with me</div>
+    <h2 class="sec-title">Hire the <em>fix,</em> not the hours.</h2>
+    <p class="sec-lead">What separates a cheap listing from a delivered scope: ownership, upgrade-safe code, and communication you don't have to chase.</p>
+    <div class="why-grid">
+      <div class="why-item"><span class="why-mark">&sect;</span><div>
+        <h4>End-to-end ownership</h4>
+        <p>I scope it, build it, deploy it, document it and hand it over. No "that wasn't in scope" surprises halfway through.</p>
+      </div></div>
+      <div class="why-item"><span class="why-mark">&sect;</span><div>
+        <h4>Upgrade-safe code</h4>
+        <p>Proper module inheritance, security rules coded on every model, no Studio hacks. Your customisations survive the next Odoo release &mdash; I migrate them for a living.</p>
+      </div></div>
+      <div class="why-item"><span class="why-mark">&sect;</span><div>
+        <h4>Production experience, not just development</h4>
+        <p>Docker and Odoo.sh deployments, Nginx and websocket configuration, worker tuning, backups. I've fixed enough live servers to build with them in mind.</p>
+      </div></div>
+      <div class="why-item"><span class="why-mark">&sect;</span><div>
+        <h4>Communication that respects your time</h4>
+        <p>Written progress updates, screen recordings of what changed, and a reply within 24 hours. You always know what shipped and what's next.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap" data-reveal>
+    <div class="sec-label">Common questions</div>
+    <h2 class="sec-title">What clients ask <em>before starting.</em></h2>
+    <div class="faq">
+      <details class="faq-item">
+        <summary class="faq-q">Which Odoo versions do you work on?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">Community and Enterprise, versions 13 through 19 &mdash; most recent work is on 17, 18 and 19. If something genuinely needs Enterprise licensing, I say so before you commit rather than after.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Will you take over another developer's code?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">Yes, and it's a large part of what I do. I start with a review: what's salvageable, what should be rewritten, and what it will cost &mdash; including when the honest answer is less work than you expected.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Are you available alongside a full-time job?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">I take on a limited number of freelance and part-time engagements and I'm upfront about capacity before we agree anything. If a deadline doesn't fit my week, I'll tell you at the scoping stage, not at delivery.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">How do you handle time zones?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">I'm on PKT (UTC+5), which overlaps comfortably with the Gulf, Europe and Asia, and gives an early-morning window for North America. Written updates mean you're never waiting on a call to know where things stand.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Can you sign an NDA?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">Yes. I regularly work under confidentiality on client data and internal processes. Send yours before we get into specifics.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">Who owns the code when we're done?<span class="faq-toggle">+</span></summary>
+        <p class="faq-a">You do &mdash; source code, documentation and deployment configuration, in a repository you control. There's no lock-in and nothing obfuscated; your team or any other developer can pick it up.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="book">
+  <div class="wrap" data-reveal>
+    <div class="cta-block">
+      <h2 class="cta-title">Tell me your bottleneck. <em>I'll map it, automate it, ship it.</em></h2>
+      <p class="cta-sub">Book a free 30-minute discovery call. No sales pitch — a working session to figure out whether I'm the right person to fix your Odoo.</p>
+      <div class="cta-buttons">
+        <a href="mailto:your.email@example.com?subject=Odoo%20Discovery%20Call%20Request&body=Hi%20Osama%2C%0A%0AI'd%20like%20to%20schedule%20a%20discovery%20call%20about%20my%20Odoo%20setup.%0A%0AHere's%20a%20quick%20note%20on%20what's%20bothering%20me%3A%0A%0A%5BYour%20message%20here%5D%0A%0AThanks!" class="btn btn-primary btn-large">Email me <span class="arrow">→</span></a>
+        <a href="https://wa.me/923000000000" target="_blank" rel="noopener" class="btn btn-wa btn-large">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <div class="cta-qr">
+        <div class="cta-qr-divider"><span>or scan with your phone</span></div>
+        <a href="https://wa.me/923000000000" target="_blank" rel="noopener" class="cta-qr-card" aria-label="Scan QR code to open WhatsApp chat">
+          <img src="whatsapp-qr.png" alt="WhatsApp QR for Osama Ali" loading="lazy"
+               onerror="this.closest('.cta-qr').style.display='none'" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap foot">
+    <div>&copy; 2026 Osama Ali &middot; Odoo Developer &middot; Islamabad, Pakistan</div>
+    <div class="foot-links">
+      <a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#book">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING WHATSAPP ============ -->
+<a href="https://wa.me/923000000000" target="_blank" rel="noopener" class="wa-float" aria-label="Chat with Osama on WhatsApp">
+  <span class="wa-float-label">Chat on WhatsApp</span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+// ----- Mobile menu -----
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+const setMenu = (open) => {
+  menuBtn.setAttribute('aria-expanded', String(open));
+  menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  mobileNav.classList.toggle('open', open);
+};
+menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+// ----- FAQ accordion: single-open -----
+const faqs = document.querySelectorAll('.faq-item');
+faqs.forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (item.open) faqs.forEach(o => { if (o !== item) o.open = false; });
+  });
+});
+
+// ----- Scroll reveal -----
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealEls = document.querySelectorAll('[data-reveal]');
+if (!prefersReduced && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add('in-view'));
+}
+
+// ----- Hero document chain animation -----
+(() => {
+  const nodes = [...document.querySelectorAll('#chainTrack .chain-node')];
+  const status = document.getElementById('chainStatus');
+  const states = ['confirmed', 'confirmed', 'done', 'posted', 'paid'];
+  if (!nodes.length) return;
+  if (prefersReduced) {
+    nodes.forEach((n, i) => {
+      n.classList.add('done');
+      n.querySelector('.chain-state').textContent = states[i];
+    });
+    status.textContent = 'reconciled ✓';
+    return;
+  }
+  let i = 0;
+  const tick = () => {
+    if (i < nodes.length) {
+      const idx = i;
+      const n = nodes[idx];
+      nodes.forEach(x => x.classList.remove('active'));
+      n.classList.add('active');
+      n.querySelector('.chain-state').textContent = 'processing…';
+      status.textContent = 'syncing…';
+      setTimeout(() => {
+        n.classList.remove('active');
+        n.classList.add('done');
+        n.querySelector('.chain-state').textContent = states[idx];
+      }, 850);
+      i++;
+      setTimeout(tick, 1100);
+    } else {
+      status.textContent = 'reconciled ✓';
+      status.style.color = 'var(--ok)';
+      // Reset and loop after a pause
+      setTimeout(() => {
+        nodes.forEach((n, j) => {
+          n.classList.remove('done', 'active');
+          n.querySelector('.chain-state').textContent = j === 0 ? 'draft' : '—';
+        });
+        status.textContent = 'syncing…';
+        status.style.color = '';
+        i = 0;
+        setTimeout(tick, 600);
+      }, 4200);
+    }
+  };
+  setTimeout(tick, 900);
+})();
+
+// ----- Bottleneck diagnoser -----
+(() => {
+  const chips = [...document.querySelectorAll('.diag-chip')];
+  const title = document.getElementById('diagTitle');
+  const body = document.getElementById('diagBody');
+  const mail = document.getElementById('diagMail');
+  const EMAIL = 'your.email@example.com';
+
+  const MAP = {
+    reconcile: {
+      t: 'Start with an <em>Audit &amp; Roadmap.</em>',
+      b: 'Reconciliation gaps are almost always a valuation-layer or costing-method issue, not "bad data". Three days of audit finds the root cause before anyone spends money rebuilding.',
+      s: 'Inventory / accounting reconciliation issue',
+      m: 'Our inventory and accounting figures do not reconcile. I would like to start with an audit.'
+    },
+    mess: {
+      t: 'Start with an <em>Audit &amp; Roadmap.</em>',
+      b: 'Before anyone rebuilds anything, you need to know what is salvageable. The audit gives you a written report and an honest cleanup quote — even if the honest answer is "less work than you feared".',
+      s: 'Cleanup of a previous developer\'s customizations',
+      m: 'A previous developer left us with customizations we do not trust. I would like an audit of what is there.'
+    },
+    module: {
+      t: 'That\'s a <em>Build &amp; Ship</em> engagement.',
+      b: 'Fixed scope, fixed fee, 1–4 weeks: a written scope, the module or report itself, a staging deploy, production cutover, and a support window afterwards.',
+      s: 'Custom module / report — fixed scope',
+      m: 'We need a custom Odoo module or report built. I would like to scope a Build & Ship engagement.'
+    },
+    integration: {
+      t: 'That\'s a <em>Build &amp; Ship</em> engagement.',
+      b: 'API integrations are scoped like modules: auth model, sync direction, failure handling, and a staging run before anything touches production data.',
+      s: 'System integration with Odoo',
+      m: 'We need Odoo connected to another system via API. I would like to scope a Build & Ship engagement.'
+    },
+    migration: {
+      t: '<em>Build &amp; Ship</em> — with a reconciliation gate.',
+      b: 'Migrations are fixed-scope work with one extra rule: the numbers reconcile on staging before cutover, or cutover does not happen. Most recently I moved a full custom-module estate from v17 to v19.',
+      s: 'Odoo version migration',
+      m: 'We have a version migration that is stuck or feels risky. I would like to discuss a fixed-scope migration engagement.'
+    },
+    ongoing: {
+      t: 'You want <em>part-time support.</em>',
+      b: 'A fixed block of hours each month, a weekly check-in and direct WhatsApp access — an Odoo developer on call without a full-time hire.',
+      s: 'Ongoing Odoo support retainer',
+      m: 'We need ongoing senior Odoo support. I would like to discuss part-time ongoing support.'
+    }
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+      const d = MAP[chip.dataset.k];
+      title.innerHTML = d.t;
+      body.textContent = d.b;
+      const subject = encodeURIComponent('Odoo enquiry: ' + d.s);
+      const bodyTxt = encodeURIComponent('Hi Osama,\n\n' + d.m + '\n\nA bit about our setup:\n- Odoo version: \n- Edition (Community/Enterprise): \n- Hosting: \n\nThanks!');
+      mail.href = `mailto:${EMAIL}?subject=${subject}&body=${bodyTxt}`;
+    });
+  });
+})();
+
+// ----- Scroll progress + smart header + parallax + back-to-top -----
+const progress = document.getElementById('progress');
+const toTop = document.getElementById('toTop');
+const hdr = document.querySelector('header');
+let lastY = 0;
+const onScroll = () => {
+  const y = window.scrollY;
+  const h = document.documentElement.scrollHeight - innerHeight;
+  progress.style.transform = `scaleX(${h ? y / h : 0})`;
+  toTop.classList.toggle('show', y > 600);
+  if (!prefersReduced) {
+    hdr.classList.toggle('hidden', y > lastY && y > 320 && !mobileNav.classList.contains('open'));
+    document.documentElement.style.setProperty('--sy', (y * 0.06).toFixed(1));
+  }
+  lastY = y;
+};
+addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' }));
+
+// ----- Scrollspy: highlight active nav link -----
+const spyLinks = [...document.querySelectorAll('.nav-links a')];
+const spyMap = new Map(spyLinks.map(a => [a.getAttribute('href').slice(1), a]));
+const spy = new IntersectionObserver(es => {
+  es.forEach(e => {
+    const link = spyMap.get(e.target.id);
+    if (link && e.isIntersecting) {
+      spyLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+spyMap.forEach((_, id) => { const s = document.getElementById(id); if (s) spy.observe(s); });
+
+// ----- Stagger indices for grid children -----
+document.querySelectorAll('[data-reveal]').forEach(sec => {
+  sec.querySelectorAll('.card,.problem-cell,.step,.pkg,.why-item,.fact')
+    .forEach((el, i) => el.style.setProperty('--i', Math.min(i, 8)));
+});
+
+// ----- Count-up hero stats -----
+(() => {
+  const nums = [...document.querySelectorAll('[data-count]')];
+  if (!nums.length) return;
+  if (prefersReduced) { nums.forEach(el => el.textContent = el.dataset.count); return; }
+  const run = el => {
+    const end = +el.dataset.count, t0 = performance.now(), dur = 1300;
+    const step = t => {
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  const io2 = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { run(e.target); io2.unobserve(e.target); }
+  }), { threshold: .6 });
+  nums.forEach(el => io2.observe(el));
+})();
+
+// ----- Card tilt + cursor glow (fine pointers, motion allowed) -----
+if (!prefersReduced && matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - .5;
+      const y = (e.clientY - r.top) / r.height - .5;
+      card.style.transform = `translateY(-3px) rotateX(${(-y * 4).toFixed(2)}deg) rotateY(${(x * 5).toFixed(2)}deg)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+  const glow = document.getElementById('cursorGlow');
+  addEventListener('pointermove', e => {
+    glow.style.opacity = '1';
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  }, { passive: true });
+}
+</script>
+
+</body>
+</html>
